@@ -10,7 +10,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Icon from "@material-ui/core/Icon";
 
 // @material-ui/icons
-import { Apps, CloudDownload } from "@material-ui/icons";
+import { Apps, CloudDownload, ContactMail, List as ListIcon, Note } from "@material-ui/icons";
 import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 
@@ -26,7 +26,7 @@ export default function HeaderLinks(props) {
   const classes = useStyles();
   return (
     <List className={classes.list}>
-      <ListItem className={classes.listItem}>
+      {/* <ListItem className={classes.listItem}>
         <CustomDropdown
           noLiPadding
           navDropdown
@@ -49,10 +49,10 @@ export default function HeaderLinks(props) {
             </a>
           ]}
         />
-      </ListItem>
+      </ListItem> */}
       <ListItem className={classes.listItem}>
         <Button
-          href="blog"
+          href="/blog"
           color="transparent"
           className={classes.navLink}
         >
@@ -61,20 +61,37 @@ export default function HeaderLinks(props) {
       </ListItem>
       <ListItem className={classes.listItem}>
         <Button
-          href="https://github.com/app-generator/nextjs-material-kit"
+          href="/aboutus"
           color="transparent"
-          target="_blank"
           className={classes.navLink}
         >
-          <CloudDownload className={classes.icons} /> Download
+          <Note className={classes.icons} /> About Us
         </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
-        {/*<Tooltip title="Delete">
+        <Button
+          href="/contact"
+          color="transparent"
+          className={classes.navLink}
+        >
+          <ContactMail className={classes.icons} /> Contact
+        </Button>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Button
+          href="/pricing"
+          color="transparent"
+          className={classes.navLink}
+        >
+          <ListIcon className={classes.icons} /> Pricing
+        </Button>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        {/* <Tooltip title="Delete">
           <IconButton aria-label="Delete">
             <DeleteIcon />
           </IconButton>
-        </Tooltip>*/}
+        </Tooltip> */}
         <Tooltip
           id="instagram-twitter"
           title="Follow us on twitter"
@@ -124,6 +141,30 @@ export default function HeaderLinks(props) {
             <i className={classes.socialIcons + " fab fa-instagram"} />
           </Button>
         </Tooltip>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Button
+          href="/signup"
+          className={classes.registerNavLink}
+          //onClick={(e) => e.preventDefault()}
+          color="rose"
+          round
+          // size="sm"
+        >
+          Sign Up
+        </Button>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Button
+          href="/login"
+          className={classes.registerNavLink}
+          //onClick={(e) => e.preventDefault()}
+          color="white"
+          round={true}
+          // size="sm"
+        >
+          Login
+        </Button>
       </ListItem>
     </List>
   );

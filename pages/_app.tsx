@@ -20,25 +20,30 @@ import ReactDOM from "react-dom";
 import App from "next/app";
 import Head from "next/head";
 import Router from "next/router";
+import { createRoot, hydrateRoot } from 'react-dom/client';
 
 import PageChange from "../components/PageChange/PageChange";
 
 import "/styles/scss/nextjs-material-kit.scss?v=1.2.0";
 
+let container;
+let root;
 Router.events.on("routeChangeStart", (url) => {
   console.log(`Loading: ${url}`);
-  document.body.classList.add("body-page-transition");
-  ReactDOM.render(
-    <PageChange path={url} />,
-    document.getElementById("page-transition")
-  );
+  if(!container)
+  {
+    document.body.classList.add("body-page-transition");
+    container = document.getElementById("page-transition") as HTMLElement;
+    root = createRoot(container);
+    root.render(<PageChange path={url} />);
+  }
 });
 Router.events.on("routeChangeComplete", () => {
-  ReactDOM.unmountComponentAtNode(document.getElementById("page-transition"));
+  root.unmount();
   document.body.classList.remove("body-page-transition");
 });
 Router.events.on("routeChangeError", () => {
-  ReactDOM.unmountComponentAtNode(document.getElementById("page-transition"));
+  root.unmount();
   document.body.classList.remove("body-page-transition");
 });
 
